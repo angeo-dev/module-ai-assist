@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <angeo_ai_assist>
+            <general>
+                <enabled>0</enabled>
+                <provider>anthropic</provider>
+                <api_key backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <model/>
+            </general>
+            <limits>
+                <max_output_tokens>1200</max_output_tokens>
+                <daily_limit>30</daily_limit>
+                <cache_days>7</cache_days>
+                <timeout>60</timeout>
+            </limits>
+        </angeo_ai_assist>
+    </default>
+</config>

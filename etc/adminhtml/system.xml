@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="angeo" translate="label" sortOrder="200">
+            <label>Angeo AEO</label>
+        </tab>
+        <section id="angeo_ai_assist" translate="label" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>AI Assistant</label>
+            <tab>angeo</tab>
+            <resource>Angeo_AiAssist::config</resource>
+
+            <group id="general" translate="label comment" sortOrder="10" showInDefault="1">
+                <label>Assistant</label>
+                <comment><![CDATA[
+                    Adds an "Ask the AI assistant" panel to the Angeo AEO pages: audit results,
+                    brand visibility runs and agent activity. It explains the charts and suggests
+                    fixes as text. It never changes the store.<br/><br/>
+                    <strong>What is sent to the provider:</strong> the results shown on that page
+                    (scores, check messages, URLs of your store, AI answers from a brand-visibility
+                    run). No customer data, no orders, no API keys. Your provider's terms apply.
+                ]]></comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="provider" translate="label" type="select" sortOrder="20" showInDefault="1" canRestore="1">
+                    <label>Provider</label>
+                    <source_model>Angeo\AiAssist\Model\Config\Source\Provider</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="obscure" sortOrder="30" showInDefault="1">
+                    <label>API key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Stored encrypted. Use a key with a spending limit set at the provider.</comment>
+                </field>
+                <field id="model" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                    <label>Model</label>
+                    <comment><![CDATA[Empty = default: claude-sonnet-5-5, gpt-4.1-mini or gemini-2.5-flash. Any model id the provider accepts.]]></comment>
+                </field>
+            </group>
+
+            <group id="limits" translate="label" sortOrder="20" showInDefault="1">
+                <label>Limits</label>
+                <field id="daily_limit" translate="label comment" type="text" sortOrder="10" showInDefault="1" canRestore="1">
+                    <label>New answers per admin user per day</label>
+                    <validate>validate-digits validate-digits-range digits-range-1-1000</validate>
+                    <comment>Answers from the cache do not count. Resets at midnight UTC.</comment>
+                </field>
+                <field id="cache_days" translate="label comment" type="text" sortOrder="20" showInDefault="1" canRestore="1">
+                    <label>Reuse an answer for (days)</label>
+                    <validate>validate-digits validate-digits-range digits-range-0-90</validate>
+                    <comment>Only while the data on the page is unchanged. 0 = always ask again.</comment>
+                </field>
+                <field id="max_output_tokens" translate="label" type="text" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label>Maximum answer length (tokens)</label>
+                    <validate>validate-digits validate-digits-range digits-range-256-4000</validate>
+                </field>
+                <field id="timeout" translate="label" type="text" sortOrder="40" showInDefault="1" canRestore="1">
+                    <label>Timeout (seconds)</label>
+                    <validate>validate-digits validate-digits-range digits-range-10-180</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

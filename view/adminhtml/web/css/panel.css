@@ -1,0 +1,24 @@
+/* Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev) — MIT License */
+.angeo-ai{box-sizing:border-box;margin:2.4rem 0 1rem;padding:1.6rem 2rem;background:#fff;border:1px solid #e3e3e3;border-left:4px solid #4690bf;max-width:1100px}
+.angeo-ai__head{display:flex;align-items:center;gap:1rem;margin-bottom:.6rem}
+.angeo-ai__title{font-size:1.8rem;font-weight:600;margin:0}
+.angeo-ai__badge{font-size:1.1rem;text-transform:uppercase;letter-spacing:.06em;color:#4690bf;background:#e8f3fa;padding:.2rem .7rem;border-radius:3px}
+.angeo-ai__note{color:#555;margin:0 0 1.2rem;max-width:80ch}
+.angeo-ai__actions{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.2rem}
+.angeo-ai__ask-row{display:flex;gap:1rem;max-width:80ch}
+.angeo-ai__ask-row input{flex:1}
+.angeo-ai__ask .admin__field-label{display:block;margin-bottom:.4rem;text-align:left;font-weight:600}
+.angeo-ai__waiting{color:#777;font-style:italic}
+.angeo-ai__status{margin-top:1.2rem;color:#555}
+.angeo-ai__status--error{color:#c0392b}
+.angeo-ai__answer{margin-top:1.2rem;padding:1.4rem 1.6rem;background:#f8f9fa;border-radius:4px;line-height:1.6;max-width:90ch}
+.angeo-ai__answer h4{font-size:1.5rem;margin:1.2rem 0 .5rem}
+.angeo-ai__answer p,.angeo-ai__answer ul,.angeo-ai__answer ol{margin:0 0 1rem}
+.angeo-ai__answer ul,.angeo-ai__answer ol{padding-left:2rem}
+.angeo-ai__answer code{background:#eef1f4;padding:.1rem .4rem;border-radius:3px;font-size:.92em}
+.angeo-ai__code{position:relative;margin:0 0 1rem}
+.angeo-ai__code pre{background:#1f2933;color:#f5f7fa;padding:1.2rem 1.4rem;border-radius:4px;overflow:auto;white-space:pre;margin:0}
+.angeo-ai__code pre code{background:none;color:inherit;padding:0}
+.angeo-ai__copy{position:absolute;top:.6rem;right:.6rem;font-size:1.1rem;padding:.2rem .8rem;background:#fff;border:1px solid #ccc;border-radius:3px;cursor:pointer}
+.angeo-ai__small{font-size:1.2rem;color:#777}
+.angeo-ai__meta{font-size:1.2rem;color:#777;margin-top:.8rem}

@@ -1,0 +1,27 @@
+{
+    "angeo_ai_assist_answer": {
+        "column": {
+            "id": true,
+            "admin_user_id": true,
+            "source": true,
+            "ref": true,
+            "task": true,
+            "question_hash": true,
+            "context_hash": true,
+            "provider": true,
+            "model": true,
+            "answer": true,
+            "input_tokens": true,
+            "output_tokens": true,
+            "created_at": true
+        },
+        "index": {
+            "ANGEO_AI_ASSIST_ANSWER_SOURCE_REF_TASK_QUESTION_HASH": true,
+            "ANGEO_AI_ASSIST_ANSWER_ADMIN_USER_ID_CREATED_AT": true,
+            "ANGEO_AI_ASSIST_ANSWER_CREATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

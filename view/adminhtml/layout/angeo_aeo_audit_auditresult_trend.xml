@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ *
+ * AEO audit score trend page (angeo/module-aeo-audit 4.4+).
+ * This handle belongs to another module. If that module is not installed,
+ * the handle is never used and this file does nothing.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Angeo_AiAssist::css/panel.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Angeo\AiAssist\Block\Adminhtml\Panel" name="angeo.ai.assist.panel" after="-">
+                <arguments>
+                    <argument name="source" xsi:type="string">aeo_audit_trend</argument>
+                    <argument name="ref_params" xsi:type="string">store</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

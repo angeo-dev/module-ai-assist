@@ -1,0 +1,61 @@
+<?php
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ */
+
+/** @var \Angeo\AiAssist\Block\Adminhtml\Panel $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<section class="angeo-ai" aria-labelledby="angeo-ai-title">
+    <header class="angeo-ai__head">
+        <h2 id="angeo-ai-title" class="angeo-ai__title"><?= $escaper->escapeHtml(__('Ask the AI assistant')) ?></h2>
+        <span class="angeo-ai__badge"><?= $escaper->escapeHtml(__('Optional')) ?></span>
+    </header>
+
+<?php if (!$block->isReady()): ?>
+    <p class="angeo-ai__note">
+        <?= $escaper->escapeHtml(__('The assistant can explain this page in plain words and suggest fixes. It is off.')) ?>
+        <?php if ($block->canConfigure()): ?>
+            <a href="<?= $escaper->escapeUrl($block->getSettingsUrl()) ?>"><?= $escaper->escapeHtml(__('Turn it on')) ?></a>
+        <?php else: ?>
+            <?= $escaper->escapeHtml(__('An administrator can turn it on.')) ?>
+        <?php endif; ?>
+    </p>
+</section>
+<?php return; endif; ?>
+
+    <p class="angeo-ai__note">
+        <?= $escaper->escapeHtml(__(
+            'Explains this page and suggests fixes. It sends the results shown here to %1 (%2). It cannot change your store.',
+            $block->getProviderLabel(),
+            $block->getModel()
+        )) ?>
+    </p>
+
+    <div class="angeo-ai__body"
+         data-mage-init='<?= $escaper->escapeHtmlAttr((string) json_encode(['Angeo_AiAssist/js/panel' => $block->getJsConfig()])) ?>'>
+        <div class="angeo-ai__actions">
+            <button type="button" class="action-secondary" data-task="explain">
+                <?= $escaper->escapeHtml(__('Explain these results')) ?>
+            </button>
+            <button type="button" class="action-secondary" data-task="fix">
+                <?= $escaper->escapeHtml(__('Suggest fixes')) ?>
+            </button>
+        </div>
+        <form class="angeo-ai__ask" data-role="ask">
+            <label class="admin__field-label" for="angeo-ai-question"><?= $escaper->escapeHtml(__('Or ask a question')) ?></label>
+            <div class="angeo-ai__ask-row">
+                <input id="angeo-ai-question" type="text" class="admin__control-text" maxlength="500"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('For example: why is my score lower than last week?')) ?>"/>
+                <button type="submit" class="action-primary"><?= $escaper->escapeHtml(__('Ask')) ?></button>
+            </div>
+        </form>
+        <p class="angeo-ai__waiting" data-role="waiting" hidden>
+            <?= $escaper->escapeHtml(__('The assistant is ready once results are shown on this page. On the run page: start a run, or open one from the history.')) ?>
+        </p>
+        <div class="angeo-ai__status" data-role="status" role="status" aria-live="polite"></div>
+        <div class="angeo-ai__answer" data-role="answer" hidden></div>
+        <p class="angeo-ai__meta" data-role="meta" hidden></p>
+    </div>
+</section>

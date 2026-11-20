@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ *
+ * Brand-visibility run page. The run loads in the browser, so the page announces it with the angeo-ai-assist:ref event (module-aeo-brand-visibility 4.2+).
+ * This handle belongs to another module. If that module is not installed,
+ * the handle is never used and this file does nothing.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Angeo_AiAssist::css/panel.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Angeo\AiAssist\Block\Adminhtml\Panel" name="angeo.ai.assist.panel" after="-">
+                <arguments>
+                    <argument name="source" xsi:type="string">brand_visibility</argument>
+                    <argument name="ref_event" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,68 @@
+{
+    "name": "angeo/module-ai-assist",
+    "description": "Optional AI assistant for the Angeo AEO admin pages in Magento 2. Explains audit results, brand-visibility runs and agent-activity reports in plain words and suggests fixes as text to copy. Uses your own Anthropic, OpenAI or Gemini key. Off by default; it never changes the store.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "keywords": [
+        "magento2",
+        "aeo",
+        "answer-engine-optimization",
+        "ai-assistant",
+        "claude",
+        "openai",
+        "gemini",
+        "adobe-commerce"
+    ],
+    "homepage": "https://angeo.dev",
+    "authors": [
+        {
+            "name": "Ievgenii Gryshkun",
+            "homepage": "https://angeo.dev"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/angeo-dev/module-ai-assist/issues",
+        "source": "https://github.com/angeo-dev/module-ai-assist",
+        "email": "support@angeo.dev"
+    },
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "ext-json": "*",
+        "magento/framework": ">=103.0.6 <104",
+        "magento/module-backend": ">=102.0.6 <103",
+        "magento/module-config": ">=101.2.6 <102",
+        "magento/module-cron": ">=100.4.6 <101"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "magento/magento-coding-standard": "^40.0 || ^41.0",
+        "phpstan/phpstan": "^2.0",
+        "bitexpert/phpstan-magento": "^0.43"
+    },
+    "suggest": {
+        "angeo/module-aeo-audit": "4.4+ explains audit results and the score trend",
+        "angeo/module-aeo-brand-visibility": "4.2+ explains brand-visibility runs",
+        "angeo/module-agent-activity": "1.3+ explains the agent activity report"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Angeo\\AiAssist\\": ""
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
+            "magento/composer-dependency-version-audit-plugin": false,
+            "mage-os/composer-dependency-version-audit-plugin": false,
+            "magento/magento-composer-installer": false,
+            "magento/inventory-composer-installer": false,
+            "laminas/laminas-dependency-plugin": false,
+            "php-http/discovery": false
+        }
+    }
+}

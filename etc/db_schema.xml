@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="angeo_ai_assist_answer" resource="default" engine="innodb" comment="Angeo AI assistant answers (cache and daily count)">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="int" name="admin_user_id" unsigned="true" nullable="false" default="0" comment="Admin user who asked"/>
+        <column xsi:type="varchar" name="source" length="32" nullable="false" comment="Owning module source code"/>
+        <column xsi:type="varchar" name="ref" length="64" nullable="false" comment="Record reference"/>
+        <column xsi:type="varchar" name="task" length="16" nullable="false" comment="explain|fix|ask"/>
+        <column xsi:type="varchar" name="question_hash" length="64" nullable="false" comment="SHA-256 of task, question and language"/>
+        <column xsi:type="varchar" name="context_hash" length="64" nullable="false" comment="SHA-256 of the facts"/>
+        <column xsi:type="varchar" name="provider" length="16" nullable="false" comment="Provider"/>
+        <column xsi:type="varchar" name="model" length="80" nullable="false" comment="Model"/>
+        <column xsi:type="mediumtext" name="answer" nullable="false" comment="Answer (Markdown)"/>
+        <column xsi:type="int" name="input_tokens" unsigned="true" nullable="true" comment="Input tokens"/>
+        <column xsi:type="int" name="output_tokens" unsigned="true" nullable="true" comment="Output tokens"/>
+        <column xsi:type="datetime" name="created_at" nullable="false" comment="Created at (UTC)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="ANGEO_AI_ASSIST_ANSWER_SOURCE_REF_TASK_QUESTION_HASH" indexType="btree">
+            <column name="source"/>
+            <column name="ref"/>
+            <column name="task"/>
+            <column name="question_hash"/>
+        </index>
+        <index referenceId="ANGEO_AI_ASSIST_ANSWER_ADMIN_USER_ID_CREATED_AT" indexType="btree">
+            <column name="admin_user_id"/>
+            <column name="created_at"/>
+        </index>
+        <index referenceId="ANGEO_AI_ASSIST_ANSWER_CREATED_AT" indexType="btree">
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>

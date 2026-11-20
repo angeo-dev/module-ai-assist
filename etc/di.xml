@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2026 Ievgenii Gryshkun (angeo.dev)
+ * MIT License — see LICENSE for full terms.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Angeo\AiAssist\Model\Assistant">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="anthropic" xsi:type="object">Angeo\AiAssist\Model\Provider\Anthropic</item>
+                <item name="openai" xsi:type="object">Angeo\AiAssist\Model\Provider\OpenAi</item>
+                <item name="gemini" xsi:type="object">Angeo\AiAssist\Model\Provider\Gemini</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- The decrypted key must never reach a log or an exception report. -->
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="angeo_ai_assist/general/api_key" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
